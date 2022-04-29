@@ -1,0 +1,241 @@
+{
+	"info": {
+		"_postman_id": "cb44833f-cd9b-4bc1-bbf0-009c9569b539",
+		"name": "Projeto Univesp VIII",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "v1",
+			"item": [
+				{
+					"name": "doacoes",
+					"item": [
+						{
+							"name": "Inserir",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/doacoes/inserir/:id_humano",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"doacoes",
+										"inserir",
+										":id_humano"
+									],
+									"variable": [
+										{
+											"key": "id_humano",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "humanos",
+					"item": [
+						{
+							"name": "Inserir",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"nome\": \"{{$randomFullName}}\",\n    \"tipo_sangue\": \"AB\",\n    \"rh\": \"+\",\n    \"cpf\": \"1\",\n    \"telefone\": \"\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/humanos/inserir",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"humanos",
+										"inserir"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "consultar cpf",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/humanos/consultar/cpf/:cpf",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"humanos",
+										"consultar",
+										"cpf",
+										":cpf"
+									],
+									"variable": [
+										{
+											"key": "cpf",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "consultar tipo sangue",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/humanos/consultar/tipo_sangue/:tipo",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"humanos",
+										"consultar",
+										"tipo_sangue",
+										":tipo"
+									],
+									"variable": [
+										{
+											"key": "tipo",
+											"value": "AB"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "sms",
+					"item": [
+						{
+							"name": "enviar",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"texto\": \"Isso é um SMS de teste\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/api/v1/sms/enviar/humano/:id_humano",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sms",
+										"enviar",
+										"humano",
+										":id_humano"
+									],
+									"variable": [
+										{
+											"key": "id_humano",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "consultar humano",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/api/v1/sms/consultar/humano/:id_humano",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"api",
+										"v1",
+										"sms",
+										"consultar",
+										"humano",
+										":id_humano"
+									],
+									"variable": [
+										{
+											"key": "id_humano",
+											"value": "5"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": ""
+		}
+	]
+}
