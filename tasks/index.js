@@ -11,7 +11,7 @@ module.exports = (cluster) => {
             result => {
                 // TODO :: melhorar msg
                 process.sms.send(result.map(humano => humano.telefone), 'Doar sangue').then(
-                    result => {
+                    r => {
                         // TODO ::
                     },
                     error => 

@@ -1,9 +1,24 @@
-module.exports = ({ createRouter, lib: { mysql } }) => {
+module.exports = ({ createRouter, validacao: { nome, tipoSangue, rh, cpf, telefone }, lib: { mysql } }) => {
     const router = createRouter()
 
-    //TODO :: Validar humano
-    router.post('/',async (req, res) => 
-        mysql.execProcecure(
+    router.post('/',async (req, res) => { 
+        const validacoes = new Object(null)
+
+        validacoes.nome = nome
+        validacoes.tipo_sangue = tipoSangue
+        validacoes.rh = rh
+        validacoes.cpf = cpf
+        validacoes.telefone = telefon
+
+        for (const prop in req.body) {
+            const error = validacao[prop](req.body[prop])
+
+            if (error.errID !== undefined)
+                return res.status(400).json(error)
+            ;
+        }
+
+        return mysql.execProcecure(
             'SPU_HUMANOS_INSERIR',
             [
                 { name: "pNome",        value: req.body.nome },
@@ -18,7 +33,7 @@ module.exports = ({ createRouter, lib: { mysql } }) => {
                 : res.status(500).json({ errID: "B1HI001", error: "erro inesperado" }),
             error => res.status(400).json({ errID: "B1HI002", error })
         )
-    )
+    })
 
     return router
 }

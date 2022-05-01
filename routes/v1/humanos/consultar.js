@@ -5,7 +5,8 @@ module.exports = ({ createRouter, validacao: { cpf, tipoSangue }, lib: { mysql }
         const cpfCheck = cpf(req.params.cpf)
       
         if (cpfCheck.errID !== undefined)
-            return res.status(400).json(cpfCheck);
+            return res.status(400).json(cpfCheck)
+        ;
         
         return mysql.selectAllWhere(
             'Humanos', 'cpf = ?',
@@ -23,7 +24,8 @@ module.exports = ({ createRouter, validacao: { cpf, tipoSangue }, lib: { mysql }
         const tipoSangueCheck = tipoSangue(req.params.tipo)
       
         if (tipoSangueCheck.errID !== undefined)
-            return res.status(400).json(tipoSangueCheck);
+            return res.status(400).json(tipoSangueCheck)
+        ;
         
         return mysql.selectAllWhere(
             'Humanos', 'tipo_sangue = ?',
@@ -32,6 +34,15 @@ module.exports = ({ createRouter, validacao: { cpf, tipoSangue }, lib: { mysql }
             ]
         ).then(
             result => res.status(200).json(result),
+            error => res.status(500).json(error)
+        )
+    })
+
+    router.get('/doadores', async (req, res) => {
+        return mysql.selectAllWhere(
+            'VW_HUMANOS_DOAR', "", []
+        ).then(
+            result => res.status(200).json(result[0] ?? []),
             error => res.status(500).json(error)
         )
     })

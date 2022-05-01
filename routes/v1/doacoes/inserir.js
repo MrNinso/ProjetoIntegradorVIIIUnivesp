@@ -10,8 +10,8 @@ module.exports = ({ createRouter, lib: { mysql } }) => {
         ).then(
             result => result[0].OKAY === 1 ? 
                 res.status(200).json({})
-                : res.status(500).json({ errID: "B1D001", error: "erro inesperado" }),
-            error => res.status(400).json({ errID: "B1D002", error })
+                : res.status(500).json({ errID: "B1DI001", error: "erro inesperado" }),
+            error => res.status(400).json({ errID: "B1DI002", error })
         )
     )
 
