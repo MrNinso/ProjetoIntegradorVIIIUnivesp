@@ -49,7 +49,11 @@ module.exports = ({ config: { mysql } }) => {
 
     mysql.selectAllWhere = (table, where, params) => mysql._connect().then(
         conn => new Promise((resolve, reject) => {
-            const query =  `SELECT * FROM ${table} WHERE ${where}`
+            if (where !== "") {
+                where = `WHERE ${where}`
+            }
+
+            const query =  `SELECT * FROM ${table} ${where}`
             
 
             conn.query(query, params.map(item => item.value), (error, result) => {
